@@ -9,11 +9,12 @@ public class User {
     private String name;
     private String email;
     private String password;
-    private LocalDate birthDate;
-    private String gender;
-    private String occupation;
     private String nivelCarreira;
+    private String occupation;
+    private String gender;
+    private LocalDate birthDate;
     private LocalDate dateRegistered;
+    private Long admin;
 
     //setters e getters
     public Long getIdUser() {
@@ -56,20 +57,12 @@ public class User {
         this.password = password;
     }
 
-    public LocalDate getBirthDate() {
-        return birthDate;
+    public String getNivelCarreira() {
+        return nivelCarreira;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setNivelCarreira(String nivelCarreira) {
+        this.nivelCarreira = nivelCarreira;
     }
 
     public String getOccupation() {
@@ -80,12 +73,20 @@ public class User {
         this.occupation = occupation;
     }
 
-    public String getNivelCarreira() {
-        return nivelCarreira;
+    public String getGender() {
+        return gender;
     }
 
-    public void setNivelCarreira(String nivelCarreira) {
-        this.nivelCarreira = nivelCarreira;
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 
     public LocalDate getDateRegistered() {
@@ -95,6 +96,15 @@ public class User {
     public void setDateRegistered(LocalDate dateRegistered) {
         this.dateRegistered = dateRegistered;
     }
+
+    public Long getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Long admin) {
+        this.admin = admin;
+    }
+
 
     //metodos
 }
