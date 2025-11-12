@@ -76,7 +76,7 @@ public class EmpresaDAO {
         } finally {
             ConnectionFactory.closeConnection();
         }
-        return empresa;
+        return null;
     }
 
     public Boolean delete(Empresa empresa) {

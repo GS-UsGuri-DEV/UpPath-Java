@@ -79,7 +79,7 @@ public class RecommendationsDAO {
         } finally {
             ConnectionFactory.closeConnection();
         }
-        return recommendation;
+        return null;
     }
     public Recommendations delete(Long id) {
         Recommendations recommendation = findById(id);

@@ -81,7 +81,7 @@ public class CoursesDAO {
         } finally {
             ConnectionFactory.closeConnection();
         }
-        return course;
+        return null;
     }
 
     public Boolean delete(Long id) {
