@@ -13,7 +13,7 @@ public class UserDAO {
         String sql = "select * from usuarios order by id_usuario";
         try (PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)){
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
+            if (rs != null) {
                 while (rs.next()){
                     User user = new User();
                     user.setIdUser(rs.getLong("id_usuario"));
