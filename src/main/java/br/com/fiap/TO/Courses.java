@@ -5,6 +5,7 @@ public class Courses {
     private Long idCourse;
     private Long idTrial;
     private String courseName;
+    private String description;
     private String platform;
     private String url;
     private int durationHours;
@@ -32,6 +33,14 @@ public class Courses {
 
     public void setCourseName(String courseName) {
         this.courseName = courseName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getPlatform() {

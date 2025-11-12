@@ -7,9 +7,9 @@ public class Trail {
     private Long idTrial;
     private String title;
     private String description;
-    private String difficultyLevel;
     private String category;
-    private LocalDate startDate;
+    private String difficultyLevel;
+    private LocalDate creationDate;
 
     //setters e getters
     public Long getIdTrial() {
@@ -36,14 +36,6 @@ public class Trail {
         this.description = description;
     }
 
-    public String getDifficultyLevel() {
-        return difficultyLevel;
-    }
-
-    public void setDifficultyLevel(String difficultyLevel) {
-        this.difficultyLevel = difficultyLevel;
-    }
-
     public String getCategory() {
         return category;
     }
@@ -52,12 +44,20 @@ public class Trail {
         this.category = category;
     }
 
-    public LocalDate getStartDate() {
-        return startDate;
+    public String getDifficultyLevel() {
+        return difficultyLevel;
     }
 
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
+    public void setDifficultyLevel(String difficultyLevel) {
+        this.difficultyLevel = difficultyLevel;
+    }
+
+    public LocalDate getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
     }
 
     //medtodos
