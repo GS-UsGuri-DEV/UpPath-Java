@@ -78,10 +78,10 @@ public class EmpresaDAO {
         return null;
     }
 
-    public Boolean delete(Empresa empresa) {
+    public Boolean delete(Long id) {
         String sql = "DELETE FROM Empresa WHERE id_empresa = ?";
         try (PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)) {
-            ps.setLong(1, empresa.getIdEmpresa());
+            ps.setLong(1, id);
             return ps.executeUpdate() > 0;
 
         } catch (Exception e) {
