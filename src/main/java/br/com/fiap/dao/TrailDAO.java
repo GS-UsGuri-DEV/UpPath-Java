@@ -83,10 +83,10 @@ public class TrailDAO {
         return null;
     }
 
-    public boolean delete(Trail trail) {
+    public boolean delete(Long id) {
         String sql = "DELETE FROM Trilhas WHERE id_trilha = ?";
         try (PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)) {
-            ps.setLong(1, trail.getIdTrial());
+            ps.setLong(1, id);
             return ps.executeUpdate() > 0;
         } catch (Exception e) {
             System.out.println("Erro ao deletar a trilha: " + e.getMessage());

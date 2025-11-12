@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class UserDAO {
-    public ArrayList<User> findAkk() {
+    public ArrayList<User> findAll() {
         ArrayList<User> list = new ArrayList<>();
         String sql = "select * from usuarios order by id_usuario";
         try (PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)){
