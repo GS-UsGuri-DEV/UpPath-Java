@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class CoursesBO {
     private CoursesDAO coursesDAO;
 
-    public ArrayList<Courses> find() {
+    public ArrayList<Courses> findAll() {
         coursesDAO = new CoursesDAO();
         return coursesDAO.findAll();
     }

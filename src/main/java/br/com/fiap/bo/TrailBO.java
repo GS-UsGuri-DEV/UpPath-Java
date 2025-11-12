@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class TrailBO {
     private TrailDAO trailDAO;
 
-    public ArrayList<Trail> find() {
+    public ArrayList<Trail> findAll() {
         trailDAO = new TrailDAO();
         return trailDAO.findAll();
     }
