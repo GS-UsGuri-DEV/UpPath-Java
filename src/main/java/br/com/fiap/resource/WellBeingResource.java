@@ -8,7 +8,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import java.util.ArrayList;
 
-@Path("/wellbeing")
+@Path("/wellBeing")
 public class WellBeingResource {
     private WellBeingBO wellBeingBO = new WellBeingBO();
 

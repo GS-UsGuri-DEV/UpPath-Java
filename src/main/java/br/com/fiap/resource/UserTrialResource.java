@@ -8,7 +8,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import java.util.ArrayList;
 
-@Path("/usertrials")
+@Path("/userTrials")
 public class UserTrialResource {
     private UserTrialBO userTrialBO = new UserTrialBO();
 
