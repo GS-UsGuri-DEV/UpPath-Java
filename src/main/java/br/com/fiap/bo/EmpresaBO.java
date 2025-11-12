@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class EmpresaBO {
     private EmpresaDAO empresaDAO;
 
-    public ArrayList<Empresa> find() {
+    public ArrayList<Empresa> findAll() {
         empresaDAO = new EmpresaDAO();
         return empresaDAO.findAll();
     }

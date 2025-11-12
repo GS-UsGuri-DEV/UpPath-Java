@@ -15,7 +15,7 @@ public class EmpresaResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response findAll() {
-        ArrayList<Empresa> result = empresaBO.find();
+        ArrayList<Empresa> result = empresaBO.findAll();
         Response.ResponseBuilder response = (result != null) ? Response.ok() : Response.status(404);
         response.entity(result);
         return response.build();

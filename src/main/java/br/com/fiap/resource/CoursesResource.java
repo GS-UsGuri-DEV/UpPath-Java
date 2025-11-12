@@ -16,7 +16,7 @@ public class CoursesResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response findAll() {
-        ArrayList<Courses> result = coursesBO.find();
+        ArrayList<Courses> result = coursesBO.findAll();
         Response.ResponseBuilder response = null;
 
         if (result != null) {

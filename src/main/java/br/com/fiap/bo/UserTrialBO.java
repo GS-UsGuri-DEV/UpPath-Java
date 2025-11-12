@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class UserTrialBO {
     UserTrialDAO userDAO;
 
-    public ArrayList<UserTrial> getUserTrials() {
+    public ArrayList<UserTrial> findAll() {
         userDAO = new UserTrialDAO();
         return userDAO.findAll();
     }
