@@ -2,6 +2,7 @@ package br.com.fiap.dao;
 
 import br.com.fiap.TO.Recommendations;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -12,7 +13,6 @@ public class RecommendationsDAO {
         String sql = "SELECT * FROM recomendacoes ORDER BY id_recomendacao";
         try (PreparedStatement ps= ConnectionFactory.getConnection().prepareStatement(sql)) {
             ResultSet rs = ps.executeQuery();
-
             if (ps != null) {
                 while (rs.next()) {
                     Recommendations recommendation = new Recommendations();
@@ -50,6 +50,8 @@ public class RecommendationsDAO {
                 recommendation.setIdReference(rs.getLong("id_referencia"));
                 recommendation.setMessage(rs.getString("motivo"));
                 recommendation.setDateRecommendation(rs.getDate("date_recomendacao").toLocalDate());
+            }else {
+                return null;
             }
         } catch (Exception e) {
             System.out.println("Erro na consulta: " + e.getMessage());
@@ -66,7 +68,7 @@ public class RecommendationsDAO {
             ps.setString(2, recommendation.getType());
             ps.setLong(3, recommendation.getIdReference());
             ps.setString(4, recommendation.getMessage());
-            ps.setDate(5, java.sql.Date.valueOf(recommendation.getDateRecommendation()));
+            ps.setDate(5, Date.valueOf(recommendation.getDateRecommendation()));
             ps.executeUpdate();
 
             if(ps.executeUpdate() > 0){
@@ -81,18 +83,19 @@ public class RecommendationsDAO {
         }
         return null;
     }
-    public Recommendations delete(Long id) {
+
+    public boolean delete(Long id) {
         Recommendations recommendation = findById(id);
         String sql = "DELETE FROM recomendacoes WHERE id_recomendacao = ?";
         try (PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)) {
             ps.setLong(1, id);
-            ps.executeUpdate();
+            return ps.executeUpdate() > 0;
         } catch (Exception e) {
             System.out.println("Erro ao deletar: " + e.getMessage());
         } finally {
             ConnectionFactory.closeConnection();
         }
-        return recommendation;
+        return false;
     }
 
     public Recommendations update(Recommendations recommendation) {
@@ -102,7 +105,7 @@ public class RecommendationsDAO {
             ps.setString(2, recommendation.getType());
             ps.setLong(3, recommendation.getIdReference());
             ps.setString(4, recommendation.getMessage());
-            ps.setDate(5, java.sql.Date.valueOf(recommendation.getDateRecommendation()));
+            ps.setDate(5, Date.valueOf(recommendation.getDateRecommendation()));
             ps.setLong(6, recommendation.getIdRecommendation());
 
             if (ps.executeUpdate() > 0) {
@@ -115,6 +118,6 @@ public class RecommendationsDAO {
         } finally {
             ConnectionFactory.closeConnection();
         }
-        return recommendation;
+        return null;
     }
 }

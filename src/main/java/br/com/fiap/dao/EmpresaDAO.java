@@ -21,7 +21,6 @@ public class EmpresaDAO {
                     empresa.setCnpj(rs.getString("cnpj"));
                     empresa.setEmail(rs.getString("email_contato"));
                     empresa.setDataCadastro(rs.getDate("DATA_CADASTRO").toLocalDate());
-
                     list.add(empresa);
                 }
             }else {
@@ -36,21 +35,21 @@ public class EmpresaDAO {
     }
 
     public Empresa findById(Long id) {
-        Empresa empresa = null;
+        Empresa empresa = new Empresa();
         String sql = "SELECT * FROM Empresa WHERE id_empresa = ?";
         try (PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)) {
             ps.setLong(1, id);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                empresa = new Empresa();
                 empresa.setIdEmpresa(rs.getLong("id_empresa"));
                 empresa.setName(rs.getString("nome_empresa"));
                 empresa.setCnpj(rs.getString("cnpj"));
                 empresa.setEmail(rs.getString("email_contato"));
                 empresa.setDataCadastro(rs.getDate("DATA_CADASTRO").toLocalDate());
+            }else {
+                return null;
             }
-
         } catch (Exception e) {
             System.out.println("Erro na consulta: " + e.getMessage());
         } finally {

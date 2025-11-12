@@ -36,14 +36,13 @@ public class CoursesDAO {
     }
 
     public Courses findById(Long id){
-        Courses course = null;
+        Courses course = new Courses();
         String sql = "SELECT * FROM CURSOS WHERE id_curso = ?";
         try (PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)) {
             ps.setLong(1, id);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                course = new Courses();
                 course.setIdCourse(rs.getLong("id_curso"));
                 course.setIdTrial(rs.getLong("id_trilha"));
                 course.setCourseName(rs.getString("titulo"));
@@ -113,7 +112,6 @@ public class CoursesDAO {
             } else {
                 return null;
             }
-
         } catch (Exception e) {
             System.out.println("Erro ao atualizar o curso: " + e.getMessage());
         } finally {

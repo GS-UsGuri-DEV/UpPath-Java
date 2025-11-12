@@ -36,20 +36,21 @@ public class TrailDAO {
     }
 
     public Trail findById(long id) {
-        Trail trail = null;
+        Trail trail = new Trail();
         String sql = "SELECT * FROM Trilhas WHERE id_trilha = ?";
         try (PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)) {
             ps.setLong(1, id);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                trail = new Trail();
                 trail.setIdTrial(rs.getLong("id_trilha"));
                 trail.setTitle(rs.getString("nome_trilha"));
                 trail.setDescription(rs.getString("descricao"));
                 trail.setCategory(rs.getString("categoria"));
                 trail.setDifficultyLevel(rs.getString("nivel_dificuldade"));
                 trail.setCreationDate(rs.getDate("data_criacao").toLocalDate());
+            }else {
+                return null;
             }
 
         } catch (Exception e) {
