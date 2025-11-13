@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class TrailDAO {
-    public ArrayList<Trail> findAll() {;
+    public ArrayList<Trail> findAll() {
         ArrayList<Trail> list = new ArrayList<>();
         String sql = "SELECT * FROM Trilhas ORDER BY id_trilha";
         try (PreparedStatement ps= ConnectionFactory.getConnection().prepareStatement(sql)) {
@@ -18,7 +18,7 @@ public class TrailDAO {
                     Trail trail = new Trail();
                     trail.setIdTrial(rs.getLong("id_trilha"));
                     trail.setTitle(rs.getString("nome_trilha"));
-                    trail.setDescription(rs.getString("descricao"));
+                    trail.setDescription(rs.getString("descricao_trilha"));
                     trail.setCategory(rs.getString("categoria"));
                     trail.setDifficultyLevel(rs.getString("nivel_dificuldade"));
                     trail.setCreationDate(rs.getDate("data_criacao").toLocalDate());
