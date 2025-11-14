@@ -2,6 +2,7 @@ package br.com.fiap.bo;
 
 import br.com.fiap.TO.Recommendations;
 import br.com.fiap.dao.RecommendationsDAO;
+import br.com.fiap.service.IdGenerator;
 
 import java.util.ArrayList;
 
@@ -20,6 +21,8 @@ public class RecommendationsBO {
 
     public Recommendations save(Recommendations recommendations) {
         recommendationsDAO = new RecommendationsDAO();
+        Long id = IdGenerator.generate("recomendacoes", "id_recomendacao");
+        recommendations.setIdRecommendation(id);
         return recommendationsDAO.save(recommendations);
     }
 
