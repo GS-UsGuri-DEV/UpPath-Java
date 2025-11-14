@@ -2,6 +2,7 @@ package br.com.fiap.bo;
 
 import br.com.fiap.TO.WellBeing;
 import br.com.fiap.dao.WellBeingDAO;
+import br.com.fiap.service.IdGenerator;
 
 import java.util.ArrayList;
 
@@ -20,6 +21,8 @@ public class WellBeingBO {
 
     public WellBeing save(WellBeing wB) {
         wBdao = new WellBeingDAO();
+        Long id = IdGenerator.generate("BEM_estar", "id_registro");
+        wB.setIdWellBeing(id);
         return wBdao.save(wB);
     }
 

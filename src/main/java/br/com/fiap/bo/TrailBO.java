@@ -2,6 +2,7 @@ package br.com.fiap.bo;
 
 import br.com.fiap.TO.Trail;
 import br.com.fiap.dao.TrailDAO;
+import br.com.fiap.service.IdGenerator;
 
 import java.util.ArrayList;
 
@@ -19,6 +20,8 @@ public class TrailBO {
     }
     public Trail save(Trail trail) {
         trailDAO = new TrailDAO();
+        Long id = IdGenerator.generate("trilhas", "id_trilha");
+        trail.setIdTrial(id);
         return trailDAO.save(trail);
     }
     public boolean delete(Long id) {

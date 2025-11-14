@@ -7,6 +7,14 @@ public class Trail {
     private Long idTrial;
     private String title;
     private String description;
+
+    private byte[] image;
+    private String imageName;
+    private String imageMime;
+    private int imageSize;
+    private String imageAlt;
+    private byte[] imageThumb;
+
     private String category;
     private String difficultyLevel;
     private LocalDate creationDate;
@@ -36,6 +44,54 @@ public class Trail {
         this.description = description;
     }
 
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    public String getImageMime() {
+        return imageMime;
+    }
+
+    public void setImageMime(String imageMime) {
+        this.imageMime = imageMime;
+    }
+
+    public int getImageSize() {
+        return imageSize;
+    }
+
+    public void setImageSize(int imageSize) {
+        this.imageSize = imageSize;
+    }
+
+    public String getImageAlt() {
+        return imageAlt;
+    }
+
+    public void setImageAlt(String imageAlt) {
+        this.imageAlt = imageAlt;
+    }
+
+    public byte[] getImageThumb() {
+        return imageThumb;
+    }
+
+    public void setImageThumb(byte[] imageThumb) {
+        this.imageThumb = imageThumb;
+    }
+
     public String getCategory() {
         return category;
     }
@@ -59,6 +115,7 @@ public class Trail {
     public void setCreationDate(LocalDate creationDate) {
         this.creationDate = creationDate;
     }
+
 
     //medtodos
 }

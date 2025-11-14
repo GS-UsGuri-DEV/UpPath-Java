@@ -2,6 +2,7 @@ package br.com.fiap.bo;
 
 import br.com.fiap.TO.User;
 import br.com.fiap.dao.UserDAO;
+import br.com.fiap.service.IdGenerator;
 
 import java.util.ArrayList;
 
@@ -17,6 +18,8 @@ public class UserBO {
     }
     public User save(User user) {
         userDAO = new UserDAO();
+        Long id = IdGenerator.generate("usuarios", "id_usuario");
+        user.setIdUser(id);
         return userDAO.save(user);
     }
     public boolean delete(Long id) {

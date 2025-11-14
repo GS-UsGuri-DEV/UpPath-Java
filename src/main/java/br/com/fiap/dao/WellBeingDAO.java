@@ -18,7 +18,7 @@ public class WellBeingDAO {
                    WellBeing wb = new WellBeing();
                    wb.setIdWellBeing(rs.getLong("id_registro"));
                    wb.setIdUser(rs.getLong("id_usuario"));
-                   wb.setDateRecorded(rs.getDate("DATE_registro").toLocalDate());
+                   wb.setDateRecorded(rs.getDate("DATA_registro").toLocalDate());
                    wb.setStressLevel(rs.getInt("nivel_estresse"));
                    wb.setMotivationLevel(rs.getInt("nivel_motivacao"));
                    wb.setSleepQuality(rs.getInt("qualidade_sono"));
@@ -45,7 +45,7 @@ public class WellBeingDAO {
             if (rs.next()) {
                 wb.setIdWellBeing(rs.getLong("id_registro"));
                 wb.setIdUser(rs.getLong("id_usuario"));
-                wb.setDateRecorded(rs.getDate("DATE_registro").toLocalDate());
+                wb.setDateRecorded(rs.getDate("DATA_registro").toLocalDate());
                 wb.setStressLevel(rs.getInt("nivel_estresse"));
                 wb.setMotivationLevel(rs.getInt("nivel_motivacao"));
                 wb.setSleepQuality(rs.getInt("qualidade_sono"));
@@ -63,10 +63,12 @@ public class WellBeingDAO {
     }
 
     public WellBeing save(WellBeing wb) {
-        String sql = "INSERT INTO bem_estar (id_usuario, DATE_registro, nivel_estresse, nivel_motivacao, qualidade_sono, observacao) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO bem_estar (id_registro, id_usuario, nivel_estresse, nivel_motivacao, qualidade_sono, observacao) VALUES (?, ?, ?, ?, ?, ?)";
+
         try (PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)) {
-            ps.setLong(1, wb.getIdUser());
-            ps.setDate(2, Date.valueOf(wb.getDateRecorded()));
+
+            ps.setLong(1, wb.getIdWellBeing());
+            ps.setLong(2, wb.getIdUser());
             ps.setInt(3, wb.getStressLevel());
             ps.setInt(4, wb.getMotivationLevel());
             ps.setInt(5, wb.getSleepQuality());
@@ -74,7 +76,7 @@ public class WellBeingDAO {
 
             if (ps.executeUpdate() > 0) {
                 return wb;
-            }else {
+            } else {
                 return null;
             }
         } catch (Exception e) {
@@ -99,15 +101,14 @@ public class WellBeingDAO {
     }
 
     public WellBeing update(WellBeing wb) {
-        String sql = "UPDATE bem_estar SET id_usuario = ?, DATE_registro = ?, nivel_estresse = ?, nivel_motivacao = ?, qualidade_sono = ?, observacao = ? WHERE id_registro = ?";
+        String sql = "UPDATE bem_estar SET id_usuario = ?, nivel_estresse = ?, nivel_motivacao = ?, qualidade_sono = ?, observacao = ? WHERE id_registro = ?";
         try (PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)) {
             ps.setLong(1, wb.getIdUser());
-            ps.setDate(2, Date.valueOf(wb.getDateRecorded()));
-            ps.setInt(3, wb.getStressLevel());
-            ps.setInt(4, wb.getMotivationLevel());
-            ps.setInt(5, wb.getSleepQuality());
-            ps.setString(6, wb.getObservations());
-            ps.setLong(7, wb.getIdWellBeing());
+            ps.setInt(2, wb.getStressLevel());
+            ps.setInt(3, wb.getMotivationLevel());
+            ps.setInt(4, wb.getSleepQuality());
+            ps.setString(5, wb.getObservations());
+            ps.setLong(6, wb.getIdWellBeing());
 
             if (ps.executeUpdate() > 0) {
                 return wb;
