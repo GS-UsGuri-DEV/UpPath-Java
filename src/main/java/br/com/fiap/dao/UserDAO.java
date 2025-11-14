@@ -24,7 +24,7 @@ public class UserDAO {
                     user.setNivelCarreira(rs.getString("nivel_carreira"));
                     user.setOccupation(rs.getString("ocupacao"));
                     user.setGender(rs.getString("genero"));
-                    user.setBirthDate(rs.getDate("DARTA_NASCIMENTO").toLocalDate());
+                    user.setBirthDate(rs.getDate("DATA_NASCIMENTO").toLocalDate());
                     user.setDateRegistered(rs.getDate("data_cadastro").toLocalDate());
                     list.add(user);
                 }
@@ -54,7 +54,7 @@ public class UserDAO {
                 user.setNivelCarreira(rs.getString("nivel_carreira"));
                 user.setOccupation(rs.getString("ocupacao"));
                 user.setGender(rs.getString("genero"));
-                user.setBirthDate(rs.getDate("DARTA_NASCIMENTO").toLocalDate());
+                user.setBirthDate(rs.getDate("DATA_NASCIMENTO").toLocalDate());
                 user.setDateRegistered(rs.getDate("data_cadastro").toLocalDate());
             }else {
                 return null;
@@ -68,16 +68,17 @@ public class UserDAO {
     }
 
     public User save(User user) {
-        String sql = "insert into usuarios (id_empresa, nome_completo, email, senha_hash, nivel_carreira, ocupacao, genero, DARTA_NASCIMENTO) values (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into usuarios (id_usuario, id_empresa, nome_completo, email, senha_hash, nivel_carreira, ocupacao, genero, DATA_NASCIMENTO) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)) {
-            ps.setLong(1, user.getIdEmpresa());
-            ps.setString(2, user.getName());
-            ps.setString(3, user.getEmail());
-            ps.setString(4, user.getPassword());
-            ps.setString(5, user.getNivelCarreira());
-            ps.setString(6, user.getOccupation());
-            ps.setString(7, user.getGender());
-            ps.setDate(8, Date.valueOf(user.getBirthDate()));
+            ps.setLong(1, user.getIdUser());
+            ps.setLong(2, user.getIdEmpresa());
+            ps.setString(3, user.getName());
+            ps.setString(4, user.getEmail());
+            ps.setString(5, user.getPassword());
+            ps.setString(6, user.getNivelCarreira());
+            ps.setString(7, user.getOccupation());
+            ps.setString(8, user.getGender());
+            ps.setDate(9, Date.valueOf(user.getBirthDate()));
 
             if (ps.executeUpdate() > 0) {
                 return user;
@@ -105,7 +106,7 @@ public class UserDAO {
     }
 
     public User update(User user) {
-        String sql = "update usuarios set id_empresa = ?, nome_completo = ?, email = ?, senha_hash = ?, nivel_carreira = ?, ocupacao = ?, genero = ?, DARTA_NASCIMENTO = ? where id_usuario = ?";
+        String sql = "update usuarios set id_empresa = ?, nome_completo = ?, email = ?, senha_hash = ?, nivel_carreira = ?, ocupacao = ?, genero = ?, DATA_NASCIMENTO = ? where id_usuario = ?";
         try (PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)) {
             ps.setLong(1, user.getIdEmpresa());
             ps.setString(2, user.getName());
