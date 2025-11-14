@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class EmpresaDAO {
     public ArrayList<Empresa> findAll() {
         ArrayList<Empresa> list = new ArrayList<>();
-        String sql = "SELECT * FROM Empresa ORDER BY id_empresa";
+        String sql = "SELECT * FROM Empresas ORDER BY id_empresa";
         try (PreparedStatement ps= ConnectionFactory.getConnection().prepareStatement(sql)){
             ResultSet rs = ps.executeQuery();
 
@@ -36,7 +36,7 @@ public class EmpresaDAO {
 
     public Empresa findById(Long id) {
         Empresa empresa = new Empresa();
-        String sql = "SELECT * FROM Empresa WHERE id_empresa = ?";
+        String sql = "SELECT * FROM Empresas WHERE id_empresa = ?";
         try (PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)) {
             ps.setLong(1, id);
             ResultSet rs = ps.executeQuery();
@@ -59,11 +59,12 @@ public class EmpresaDAO {
     }
 
     public Empresa save(Empresa empresa) {
-        String sql = "INSERT INTO Empresa (nome_empresa, cnpj, email_contato) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO Empresas (id_empresa, nome_empresa, cnpj, email_contato) VALUES (?, ?, ?, ?)";
         try (PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)) {
-            ps.setString(1, empresa.getName());
-            ps.setString(2, empresa.getCnpj());
-            ps.setString(3, empresa.getEmail());
+            ps.setLong(1, empresa.getIdEmpresa());
+            ps.setString(2, empresa.getName());
+            ps.setString(3, empresa.getCnpj());
+            ps.setString(4, empresa.getEmail());
 
             if (ps.executeUpdate() > 0) {
                 return empresa;
@@ -79,7 +80,7 @@ public class EmpresaDAO {
     }
 
     public Boolean delete(Long id) {
-        String sql = "DELETE FROM Empresa WHERE id_empresa = ?";
+        String sql = "DELETE FROM Empresas WHERE id_empresa = ?";
         try (PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)) {
             ps.setLong(1, id);
             return ps.executeUpdate() > 0;
@@ -93,7 +94,7 @@ public class EmpresaDAO {
     }
 
     public Empresa update(Empresa empresa) {
-        String sql = "UPDATE Empresa SET nome_empresa = ?, cnpj = ?, email_contato = ? WHERE id_empresa = ?";
+        String sql = "UPDATE Empresas SET nome_empresa = ?, cnpj = ?, email_contato = ? WHERE id_empresa = ?";
         try (PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)) {
             ps.setString(1, empresa.getName());
             ps.setString(2, empresa.getCnpj());

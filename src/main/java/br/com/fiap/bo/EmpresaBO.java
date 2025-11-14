@@ -2,6 +2,7 @@ package br.com.fiap.bo;
 
 import br.com.fiap.TO.Empresa;
 import br.com.fiap.dao.EmpresaDAO;
+import br.com.fiap.service.IdGenerator;
 
 import java.util.ArrayList;
 
@@ -20,6 +21,8 @@ public class EmpresaBO {
 
     public Empresa save(Empresa empresa) {
         empresaDAO = new EmpresaDAO();
+        long id = IdGenerator.generate("EMPRESAS", "id_empresa");
+        empresa.setIdEmpresa(id);
         return empresaDAO.save(empresa);
     }
     public boolean delete(Long id) {
