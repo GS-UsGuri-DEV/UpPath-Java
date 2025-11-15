@@ -1,4 +1,4 @@
-package br.com.fiap.service;
+package br.com.fiap.utils;
 
 import br.com.fiap.dao.ConnectionFactory;
 

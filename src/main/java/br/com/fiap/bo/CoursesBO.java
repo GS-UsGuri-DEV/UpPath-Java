@@ -2,7 +2,7 @@ package br.com.fiap.bo;
 
 import br.com.fiap.TO.Courses;
 import br.com.fiap.dao.CoursesDAO;
-import br.com.fiap.service.IdGenerator;
+import br.com.fiap.utils.IdGenerator;
 
 import java.util.ArrayList;
 
