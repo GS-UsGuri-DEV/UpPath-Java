@@ -2,29 +2,48 @@ package br.com.fiap.TO;
 
 import jakarta.validation.constraints.NotBlank;
 
-import java.time.LocalDate;
-
 public class Login {
     @NotBlank
-    private String cpf;
+    private String email;
     @NotBlank
-    private LocalDate password;
+    private String password;
 
     //setter e getter
 
-    public String getCpf() {
-        return cpf;
+    public String getEmail() {
+        return email;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public LocalDate getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(LocalDate password) {
+    public void setPassword(String password) {
         this.password = password;
+    }
+
+    //metodos
+    public static boolean validaSenha(String senha) {
+        if (senha == null || senha.length() < 8) {
+            return false;
+        }
+
+        boolean maiuscula = false;
+        boolean minuscula = false;
+        boolean numero = false;
+        boolean especial = false;
+
+        for (char c : senha.toCharArray()) {
+            if (Character.isUpperCase(c)) maiuscula = true;
+            else if (Character.isLowerCase(c)) minuscula = true;
+            else if (Character.isDigit(c)) numero = true;
+            else especial = true;
+        }
+
+        return maiuscula && minuscula && numero && especial;
     }
 }

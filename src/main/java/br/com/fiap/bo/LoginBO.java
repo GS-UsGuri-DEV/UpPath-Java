@@ -4,18 +4,26 @@ import br.com.fiap.TO.Login;
 import br.com.fiap.dao.LoginDAO;
 
 public class LoginBO {
+
     public boolean autenticar(Login login) {
 
-        if (login.getCpf() == null || login.getCpf().isEmpty()) {
-            System.out.println("CPF não informado");
+        if (!isValid(login)) {
+            return false;
+        }
+        return new LoginDAO().autenticar(login);
+    }
+    private boolean isValid(Login login) {
+
+        if (login == null) {
             return false;
         }
 
-        if (login.getPassword() == null) {
-            System.out.println("Data de nascimento não informada");
+        if (isBlank(login.getEmail()) || isBlank(login.getPassword())) {
             return false;
         }
-        LoginDAO dao = new LoginDAO();
-        return dao.autenticar(login);
+        return Login.validaSenha(login.getPassword());
+    }
+    private boolean isBlank(String value) {
+        return value == null || value.isBlank();
     }
 }
