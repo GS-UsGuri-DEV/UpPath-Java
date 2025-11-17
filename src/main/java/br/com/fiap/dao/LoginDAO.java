@@ -1,7 +1,7 @@
 package br.com.fiap.dao;
 
 import br.com.fiap.TO.Login;
-import br.com.fiap.utils.HashUtil;
+import br.com.fiap.utils.Password;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,7 +16,7 @@ public class LoginDAO {
         try (PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)) {
 
             ps.setString(1, login.getEmail());
-            ps.setString(2, HashUtil.gerarHash(login.getPassword()));
+            ps.setString(2, Password.valid(login.getPassword()));
 
             ResultSet rs = ps.executeQuery();
             return rs.next();
