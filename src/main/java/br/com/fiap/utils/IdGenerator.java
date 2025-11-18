@@ -1,4 +1,4 @@
-package br.com.fiap.service;
+package br.com.fiap.utils;
 
 import br.com.fiap.dao.ConnectionFactory;
 
@@ -10,7 +10,7 @@ public class IdGenerator {
     public static long generate(String table, String idColumn) {
         long id;
         do {
-            id = (long)(Math.random() * 333L) + 1;
+            id = (long)(Math.random() * 200L) + 1;
         } while (exists(table, idColumn, id));
 
         return id;

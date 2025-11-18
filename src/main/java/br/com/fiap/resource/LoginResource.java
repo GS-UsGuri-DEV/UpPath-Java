@@ -1,0 +1,27 @@
+package br.com.fiap.resource;
+
+import br.com.fiap.TO.Login;
+import br.com.fiap.bo.LoginBO;
+
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+
+@Path("/login")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
+public class LoginResource {
+
+    @POST
+    public Response autenticar(Login login) {
+        LoginBO bo = new LoginBO();
+
+        boolean autenticado = bo.autenticar(login);
+
+        if (autenticado) {
+            return Response.ok().build();
+        } else {
+            return Response.status(401).build();
+        }
+    }
+}

@@ -2,7 +2,7 @@ package br.com.fiap.bo;
 
 import br.com.fiap.TO.WellBeing;
 import br.com.fiap.dao.WellBeingDAO;
-import br.com.fiap.service.IdGenerator;
+import br.com.fiap.utils.IdGenerator;
 
 import java.util.ArrayList;
 
