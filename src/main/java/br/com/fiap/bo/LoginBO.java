@@ -7,14 +7,11 @@ import br.com.fiap.utils.Password;
 public class LoginBO {
 
     public boolean autenticar(Login login) {
-
-        String hash = Password.valid(login.getPassword());
-
-        if (hash == null) {
+        if (Password.valid(login.getPassword()) == null) {
             return false;
         }
-        login.setPassword(hash);
 
         return new LoginDAO().autenticar(login);
     }
+
 }
