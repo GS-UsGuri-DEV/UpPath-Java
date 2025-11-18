@@ -5,6 +5,13 @@ public class Courses {
     private Long idCourse;
     private Long idTrial;
     private String courseName;
+    private String description;
+    private byte[] imgCourse;
+    private String imgCourseName;
+    private String imgCourseMime;
+    private int imgCourseSize;
+    private String imgCourseAlt;
+    private byte[] imgCourseThumb;
     private String platform;
     private String url;
     private int durationHours;
@@ -34,6 +41,62 @@ public class Courses {
         this.courseName = courseName;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public byte[] getImgCourse() {
+        return imgCourse;
+    }
+
+    public void setImgCourse(byte[] imgCourse) {
+        this.imgCourse = imgCourse;
+    }
+
+    public String getImgCourseName() {
+        return imgCourseName;
+    }
+
+    public void setImgCourseName(String imgCourseName) {
+        this.imgCourseName = imgCourseName;
+    }
+
+    public String getImgCourseMime() {
+        return imgCourseMime;
+    }
+
+    public void setImgCourseMime(String imgCourseMime) {
+        this.imgCourseMime = imgCourseMime;
+    }
+
+    public int getImgCourseSize() {
+        return imgCourseSize;
+    }
+
+    public void setImgCourseSize(int imgCourseSize) {
+        this.imgCourseSize = imgCourseSize;
+    }
+
+    public String getImgCourseAlt() {
+        return imgCourseAlt;
+    }
+
+    public void setImgCourseAlt(String imgCourseAlt) {
+        this.imgCourseAlt = imgCourseAlt;
+    }
+
+    public byte[] getImgCourseThumb() {
+        return imgCourseThumb;
+    }
+
+    public void setImgCourseThumb(byte[] imgCourseThumb) {
+        this.imgCourseThumb = imgCourseThumb;
+    }
+
     public String getPlatform() {
         return platform;
     }
@@ -57,6 +120,7 @@ public class Courses {
     public void setDurationHours(int durationHours) {
         this.durationHours = durationHours;
     }
+
 
     //metodo
 }

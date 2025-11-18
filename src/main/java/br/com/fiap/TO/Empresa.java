@@ -1,11 +1,14 @@
 package br.com.fiap.TO;
 
+import java.time.LocalDate;
+
 public class Empresa {
     //atributos
     private Long idEmpresa;
     private String name;
-    private int cnpj;
+    private String cnpj;
     private String email;
+    private LocalDate dataCadastro;
 
     //setters e getters
     public Long getIdEmpresa() {
@@ -24,11 +27,11 @@ public class Empresa {
         this.name = name;
     }
 
-    public int getCnpj() {
+    public String getCnpj() {
         return cnpj;
     }
 
-    public void setCnpj(int cnpj) {
+    public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
 
@@ -38,6 +41,14 @@ public class Empresa {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public LocalDate getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(LocalDate dataCadastro) {
+        this.dataCadastro = dataCadastro;
     }
 
     //métodos
