@@ -33,7 +33,7 @@ public class UserResource {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response save(User user) {
+    public Response save(@Valid User user) {
         User result = userBO.save(user);
         Response.ResponseBuilder response = (result != null) ? Response.created(null) : Response.status(400);
         response.entity(result);

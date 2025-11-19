@@ -1,5 +1,7 @@
 package br.com.fiap.TO;
 
+import jakarta.validation.constraints.Email;
+
 import java.time.LocalDate;
 
 public class User {
@@ -7,6 +9,7 @@ public class User {
     private Long idUser;
     private Long idEmpresa;
     private String name;
+    @Email
     private String email;
     private String password;
     private String nivelCarreira;
@@ -107,4 +110,5 @@ public class User {
 
 
     //metodos
+
 }

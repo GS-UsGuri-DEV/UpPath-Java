@@ -3,6 +3,7 @@ package br.com.fiap.resource;
 import br.com.fiap.TO.Login;
 import br.com.fiap.bo.LoginBO;
 
+import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -13,7 +14,7 @@ import jakarta.ws.rs.core.Response;
 public class LoginResource {
 
     @POST
-    public Response autenticar(Login login) {
+    public Response autenticar(@Valid Login login) {
         LoginBO bo = new LoginBO();
 
         boolean autenticado = bo.autenticar(login);
