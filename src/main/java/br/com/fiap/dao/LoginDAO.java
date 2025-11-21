@@ -24,6 +24,8 @@ public class LoginDAO {
         } catch (SQLException e) {
             System.out.println("Erro na consulta: " + e.getMessage());
             return false;
+        }finally {
+            ConnectionFactory.closeConnection();
         }
     }
 }
