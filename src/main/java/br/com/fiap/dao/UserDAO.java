@@ -5,6 +5,7 @@ import br.com.fiap.TO.User;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Types;
 import java.util.ArrayList;
 
 public class UserDAO {
@@ -72,7 +73,11 @@ public class UserDAO {
         String sql = "insert into usuarios (id_usuario, id_empresa, nome_completo, email, senha_hash, nivel_carreira, ocupacao, genero, DATA_NASCIMENTO, is_admin) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)) {
             ps.setLong(1, user.getIdUser());
-            ps.setLong(2, user.getIdEmpresa());
+            if (user.getIdEmpresa() == null) {
+                ps.setNull(2, Types.NUMERIC);
+            } else {
+                ps.setLong(2, user.getIdEmpresa());
+            }
             ps.setString(3, user.getName());
             ps.setString(4, user.getEmail());
             ps.setString(5, user.getPassword());
