@@ -9,6 +9,7 @@ public class Empresa {
     private String cnpj;
     private String email;
     private LocalDate dataCadastro;
+    private String senha;
 
     //setters e getters
     public Long getIdEmpresa() {
@@ -49,6 +50,14 @@ public class Empresa {
 
     public void setDataCadastro(LocalDate dataCadastro) {
         this.dataCadastro = dataCadastro;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     //métodos

@@ -21,6 +21,7 @@ public class EmpresaDAO {
                     empresa.setCnpj(rs.getString("cnpj"));
                     empresa.setEmail(rs.getString("email_contato"));
                     empresa.setDataCadastro(rs.getDate("DATA_CADASTRO").toLocalDate());
+                    empresa.setSenha(rs.getString("senha_hash_empresa"));
                     list.add(empresa);
                 }
             }else {
@@ -47,6 +48,7 @@ public class EmpresaDAO {
                 empresa.setCnpj(rs.getString("cnpj"));
                 empresa.setEmail(rs.getString("email_contato"));
                 empresa.setDataCadastro(rs.getDate("DATA_CADASTRO").toLocalDate());
+                empresa.setSenha(rs.getString("senha_hash_empresa"));
             }else {
                 return null;
             }
@@ -59,12 +61,13 @@ public class EmpresaDAO {
     }
 
     public Empresa save(Empresa empresa) {
-        String sql = "INSERT INTO Empresas (id_empresa, nome_empresa, cnpj, email_contato) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO Empresas (id_empresa, nome_empresa, cnpj, email_contato,senha_hash_empresa) VALUES (?, ?, ?, ?,?)";
         try (PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)) {
             ps.setLong(1, empresa.getIdEmpresa());
             ps.setString(2, empresa.getName());
             ps.setString(3, empresa.getCnpj());
             ps.setString(4, empresa.getEmail());
+            ps.setString(5, empresa.getSenha());
 
             if (ps.executeUpdate() > 0) {
                 return empresa;

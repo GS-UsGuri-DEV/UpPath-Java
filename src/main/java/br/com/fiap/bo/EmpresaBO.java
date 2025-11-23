@@ -3,11 +3,13 @@ package br.com.fiap.bo;
 import br.com.fiap.TO.Empresa;
 import br.com.fiap.dao.EmpresaDAO;
 import br.com.fiap.utils.IdGenerator;
+import br.com.fiap.utils.Password;
 
 import java.util.ArrayList;
 
 public class EmpresaBO {
     private EmpresaDAO empresaDAO;
+    String hashed;
 
     public ArrayList<Empresa> findAll() {
         empresaDAO = new EmpresaDAO();
@@ -21,6 +23,9 @@ public class EmpresaBO {
 
     public Empresa save(Empresa empresa) {
         empresaDAO = new EmpresaDAO();
+        hashed = Password.valid(empresa.getSenha());
+        if (hashed == null) return null;
+
         long id = IdGenerator.generate("EMPRESAS", "id_empresa");
         empresa.setIdEmpresa(id);
         return empresaDAO.save(empresa);
