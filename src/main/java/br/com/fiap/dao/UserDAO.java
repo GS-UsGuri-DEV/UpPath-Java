@@ -26,6 +26,7 @@ public class UserDAO {
                     user.setGender(rs.getString("genero"));
                     user.setBirthDate(rs.getDate("DATA_NASCIMENTO").toLocalDate());
                     user.setDateRegistered(rs.getDate("data_cadastro").toLocalDate());
+                    user.setAdmin(rs.getLong(("is_admin")));
                     list.add(user);
                 }
             }else {
