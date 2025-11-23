@@ -68,7 +68,7 @@ public class UserDAO {
     }
 
     public User save(User user) {
-        String sql = "insert into usuarios (id_usuario, id_empresa, nome_completo, email, senha_hash, nivel_carreira, ocupacao, genero, DATA_NASCIMENTO) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into usuarios (id_usuario, id_empresa, nome_completo, email, senha_hash, nivel_carreira, ocupacao, genero, DATA_NASCIMENTO, is_admin) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)) {
             ps.setLong(1, user.getIdUser());
             ps.setLong(2, user.getIdEmpresa());
@@ -79,6 +79,7 @@ public class UserDAO {
             ps.setString(7, user.getOccupation());
             ps.setString(8, user.getGender());
             ps.setDate(9, Date.valueOf(user.getBirthDate()));
+            ps.setLong(10, user.getAdmin());
 
             if (ps.executeUpdate() > 0) {
                 return user;
